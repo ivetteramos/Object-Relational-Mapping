@@ -14,36 +14,31 @@ ProductTag.init(
       autoIncrement: true,
 
     },
-    product_name: {
-      type: DataTypes.STRING, 
-      allowNull: false,
-    
-    },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    stock: {
+    product_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 10
-    },
-    category_id: {
-      type: DataTypes.INTEGER,
-      references:{
-        model: 'category',
+      references:
+       {
+        model: 'product',
         key: 'id',
-      },
+    }
     },
+    tag_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'tag',
+        key: 'id',
+    }
+    }
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'product_tag',
   }
 );
-
 
 module.exports = ProductTag;
